@@ -32,6 +32,7 @@
   </textarea>
   <br><br>
   <button id="submitButton">Submit</button>
+  <button id="closeModalButton">Close Modal</button>
   <script>
     const urlParams = new URLSearchParams(window.location.search);
     const storeHash = urlParams.get('store_hash');
@@ -42,6 +43,8 @@
     const storeHashInput = document.getElementById('storeHashInput');
     const googleMapsApiKeyInput = document.getElementById('googleMapsApiKeyInput');
     const platformInput = document.getElementById('platformInput');
+    const submitButton = document.getElementById('submitButton');
+    const closeModalButtom = document.getElementById('closeModalButton');
 
     if (storeHash) {
       storeHashInput.value = storeHash;
@@ -55,8 +58,6 @@
       platformInput.value = platform;
     }
 
-    const submitButton = document.getElementById('submitButton');
-
     submitButton.addEventListener('click', () => {
       const dealerTextarea = JSON.parse(document.getElementById('dealerTextarea').value);
       console.log(dealerTextarea);
@@ -64,7 +65,13 @@
         window.parent.postMessage({ type: 'dealerUpdate', value: dealerTextarea}, '*');
       }
     });
+
+  
+    closeModalButtom.addEventListener('click', () => {
+      if (window.parent) {
+        window.parent.postMessage({ type: 'closeModal', value: true}, '*');
+      }
+    });
   </script>
 </body>
 </html>
-
