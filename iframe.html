@@ -61,7 +61,7 @@
       const dealerTextarea = JSON.parse(document.getElementById('dealerTextarea').value);
       console.log(dealerTextarea);
       if (window.parent) {
-        window.parent.postMessage({ type: 'numberUpdate', value: dealerTextarea}, '*');
+        window.parent.postMessage({ type: 'dealerUpdate', value: dealerTextarea}, '*');
       }
     });
   </script>
