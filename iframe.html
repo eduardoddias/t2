@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Iframe</title>
+</head>
+<body>
+  <label for="storeHashInput">Store Hash:</label><br>
+  <input id="storeHashInput" type="text" readonly /><br><br>
+  
+  <label for="googleMapsApiKeyInput">Google Maps API Key:</label><br>
+  <input id="googleMapsApiKeyInput" type="text" readonly /><br><br>
+  
+  <label for="platformInput">Platform:</label><br>
+  <input id="platformInput" type="text" readonly /><br><br>
+  
+  <label for="dealerTextarea">Dealer Information:</label><br>
+  <textarea id="dealerTextarea" rows="13" style="width: 500px;">
+{
+  "id": 142268,
+  "business_name": "LOREM IPSUM & GUN",
+  "license": "9-99-999-99-9C-99999",
+  "phone_number": "9999999999",
+  "phone_number_formatted": "(999) 999-9999",
+  "premise_city": "DALLAS",
+  "premise_state": "TX",
+  "premise_street": "26985 Brighton Lane",
+  "premise_zip": "75999",
+  "version": "1.0.0"
+}
+  </textarea>
+  <br><br>
+  <button id="submitButton">Submit</button>
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const storeHash = urlParams.get('store_hash');
+    const googleMapsApiKey = urlParams.get('maps_api_key');
+    const platform = urlParams.get('platform');
+
+
+    const storeHashInput = document.getElementById('storeHashInput');
+    const googleMapsApiKeyInput = document.getElementById('googleMapsApiKeyInput');
+    const platformInput = document.getElementById('platformInput');
+
+    if (storeHash) {
+      storeHashInput.value = storeHash;
+    }
+
+    if (googleMapsApiKeyInput) {
+      googleMapsApiKeyInput.value = googleMapsApiKey;
+    }
+
+    if (platformInput) {
+      platformInput.value = platform;
+    }
+
+    const submitButton = document.getElementById('submitButton');
+
+    submitButton.addEventListener('click', () => {
+      const dealerTextarea = JSON.parse(document.getElementById('dealerTextarea').value);
+      console.log(dealerTextarea);
+      if (window.parent) {
+        window.parent.postMessage({ type: 'numberUpdate', value: dealerTextarea}, '*');
+      }
+    });
+  </script>
+</body>
+</html>
+
