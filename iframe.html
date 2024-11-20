@@ -27,8 +27,7 @@
   "premise_state": "TX",
   "premise_street": "26985 Brighton Lane",
   "premise_zip": "75999",
-  "premise_address_formatted": "26985 Brighton Lane, DALLAS, TX 75999",
-  "premise_dealer_formatted": "LOREM IPSUM & GUN | 9-99-999-99-9C-99999\n(999) 999-9999\n26985 Brighton Lane\nDALLAS, TX 75999 / United States",
+  "premise_dealer_formatted": "LOREM IPSUM & GUN | 9-99-999-99-9C-99999<br/>(999)-999-9999<br/>26985 Brighton Lane<br/>DALLAS, TX 75999 / United States",
   "version": "1.0.0"
 }
   </textarea>
@@ -67,7 +66,6 @@
         window.parent.postMessage({ type: 'dealerUpdate', value: dealerTextarea}, '*');
       }
     });
-
   
     closeModalButtom.addEventListener('click', () => {
       if (window.parent) {
